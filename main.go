@@ -34,7 +34,6 @@ func main(){
 	}
 
 	inputs := strings.Split(strings.TrimSpace(string(line)), " ")
-	fmt.Println(inputs, len(inputs))
 	if len(inputs) < 2{
 		err = fmt.Errorf("The input is invalid please check again. or use help.")
 		fmt.Println(err.Error())
@@ -42,7 +41,6 @@ func main(){
 	}
 	command_name := inputs[1]
 	val, ok := commands[command_name]
-	fmt.Println(command_name == "help")
 	if command_name == "help" {
 		fmt.Println("Usage instructions are as follows:")
 		for key, val := range getCommands() {

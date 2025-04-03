@@ -33,5 +33,6 @@ func Delete(args ... string) error {
 	if err = UpdateStorage(items); err != nil{
 		return fmt.Errorf("error encountered while saving data. %w", err)
 	}
+	fmt.Printf("Task deleted successfully (ID: %d)\n", uint_16_id)
 	return nil
 }

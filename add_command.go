@@ -11,14 +11,14 @@ func Add(args ...string) (err error){
 	if err != nil {
 		fmt.Println("error encountered while reading storage. %w", err)
 	}
-	var last_id uint16
+	var new_id uint16
 	if len(items) <= 0 {
-		last_id = 0
+		new_id = 1
 	}else{
-		last_id = items[len(items)-1].Id
+		new_id = items[len(items)-1].Id + 1
 	}
 	item := TaskItem{
-		Id :  last_id + 1,
+		Id :  new_id,
 		Description: strings.Join(args, " "),
 		CreatedAt: time.Now(),
 		UpdatedAt: time.Now(),
@@ -29,5 +29,6 @@ func Add(args ...string) (err error){
 	if err = UpdateStorage(items); err != nil{
 		return fmt.Errorf("error encountered while saving data. %w", err)
 	}
+	fmt.Printf("Task added successfully (ID: %d)\n", new_id)
 	return nil
 }

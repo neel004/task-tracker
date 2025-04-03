@@ -55,7 +55,6 @@ func ensureStorage() error {
 	if err := os.WriteFile(dataFile, jsonData, 0660); err != nil {
 		return fmt.Errorf("error writing JSON file: %w", err)
 	}
-	fmt.Println("success in ensuring storage.")
 	return nil
 }
 
@@ -94,11 +93,9 @@ func UpdateStorage(items []TaskItem) error {
 	}
 	defer fileData.Close()
 
-	n, err := fileData.Write(jsonData)
+	_, err = fileData.Write(jsonData)
 	if err != nil{
 		return fmt.Errorf("error encountered while writing json. %w", err)
 	}
-	fmt.Println("wrote ", n ," bytes.")
-
 	return nil
 }
