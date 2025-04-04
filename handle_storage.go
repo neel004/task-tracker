@@ -16,7 +16,7 @@ const (
 )
 var MapFromString = map[string]TaskStatus{
 	"todo": TODO,
-	"in-progress": InProgress,
+	"inprogress": InProgress,
 	"done": Done,
 }
 func ParseStatusType(input string) (TaskStatus, bool){

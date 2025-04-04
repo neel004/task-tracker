@@ -16,12 +16,12 @@ func MoveTo(args ...string) error {
 	if len(args) < 2{
 		return fmt.Errorf("id and status needs to be passed for update.")
 	}
-	id, err := strconv.ParseUint(args[1], 10, 16)
+	id, err := strconv.ParseUint(args[0], 10, 16)
 	uint_16_id := uint16(id)
 	if err != nil {
 		return fmt.Errorf("error encountered while converting input to valid type, %w", err)
 	}
-	newState, ok := ParseStatusType(args[0]);
+	newState, ok := ParseStatusType(args[1]);
 	if !ok {
 		return fmt.Errorf("the queried status does not exists.")
 	}

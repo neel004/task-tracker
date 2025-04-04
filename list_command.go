@@ -22,6 +22,9 @@ func wrapText(width int, input string) []string{
 	if len(line) > 0{
 		lines = append(lines, line)
 	}
+	if len(lines) == 0{
+		lines = append(lines, "")
+	}
 	return lines
 }
 
