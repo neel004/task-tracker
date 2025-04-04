@@ -9,7 +9,7 @@ import (
 func Add(args ...string) (err error){
 	items, err := ReadStorage()
 	if err != nil {
-		fmt.Println("error encountered while reading storage. %w", err)
+		fmt.Println("error encountered while reading storage: %w", err)
 	}
 	var new_id uint16
 	if len(items) <= 0 {
@@ -27,7 +27,7 @@ func Add(args ...string) (err error){
 
 	items = append(items, item)
 	if err = UpdateStorage(items); err != nil{
-		return fmt.Errorf("error encountered while saving data. %w", err)
+		return fmt.Errorf("error encountered while saving data: %w", err)
 	}
 	fmt.Printf("Task added successfully (ID: %d)\n", new_id)
 	return nil

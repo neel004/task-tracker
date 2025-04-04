@@ -11,7 +11,7 @@ func MoveTo(args ...string) error {
 	items, err := ReadStorage()
 
 	if err != nil {
-		fmt.Println("error encountered while reading storage. %w", err)
+		fmt.Println("error encountered while reading storage: %w", err)
 	}
 	if len(args) < 2{
 		return fmt.Errorf("id and status needs to be passed for update.")
@@ -19,7 +19,7 @@ func MoveTo(args ...string) error {
 	id, err := strconv.ParseUint(args[0], 10, 16)
 	uint_16_id := uint16(id)
 	if err != nil {
-		return fmt.Errorf("error encountered while converting input to valid type, %w", err)
+		return fmt.Errorf("error encountered while converting input to valid type: %w", err)
 	}
 	newState, ok := ParseStatusType(args[1]);
 	if !ok {
@@ -39,7 +39,7 @@ func MoveTo(args ...string) error {
 	}
 
 	if err = UpdateStorage(items); err != nil{
-		return fmt.Errorf("error encountered while saving data. %w", err)
+		return fmt.Errorf("error encountered while saving data: %w", err)
 	}
 	return nil
 }

@@ -32,7 +32,7 @@ func List(args ...string) error{
 	items, err := ReadStorage()
 
 	if err != nil {
-		fmt.Println("error encountered while reading storage. %w", err)
+		fmt.Println("error encountered while reading storage: %w", err)
 	}
 	var status string
 	if len(args) > 0{

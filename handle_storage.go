@@ -50,7 +50,7 @@ func ensureStorage() error {
 	emptyJson := []TaskItem{}
 	jsonData, err := json.Marshal(emptyJson)
 	if err != nil {
-		return fmt.Errorf("error encountered while creating empty json. %w", err)
+		return fmt.Errorf("error encountered while creating empty json: %w", err)
 	}
 	if err := os.WriteFile(dataFile, jsonData, 0660); err != nil {
 		return fmt.Errorf("error writing JSON file: %w", err)
@@ -65,13 +65,13 @@ func ReadStorage() ([]TaskItem, error){
 
 	itemByte, err := os.ReadFile(dataFile)
 	if err != nil{
-		return nil, fmt.Errorf("error encountered while reading file, %w", err)
+		return nil, fmt.Errorf("error encountered while reading file: %w", err)
 	}
 
 	var items []TaskItem
 	err = json.Unmarshal(itemByte, &items)
 	if err != nil{
-		return nil, fmt.Errorf("error encountered while un-marshalling file contents. %w", err)
+		return nil, fmt.Errorf("error encountered while un-marshalling file contents: %w", err)
 	}
 	return items, nil
 }
@@ -84,18 +84,18 @@ func UpdateStorage(items []TaskItem) error {
 
 	jsonData, err := json.Marshal(items)
 	if err != nil{
-		return fmt.Errorf("error encountered while marshalling the json. %w", err)
+		return fmt.Errorf("error encountered while marshalling the json: %w", err)
 	}
 
 	fileData, err := os.OpenFile(dataFile, os.O_CREATE|os.O_WRONLY|os.O_TRUNC, 0660)
 	if err != nil{
-		return fmt.Errorf("error encountered while opening json. %w", err)
+		return fmt.Errorf("error encountered while opening json: %w", err)
 	}
 	defer fileData.Close()
 
 	_, err = fileData.Write(jsonData)
 	if err != nil{
-		return fmt.Errorf("error encountered while writing json. %w", err)
+		return fmt.Errorf("error encountered while writing json: %w", err)
 	}
 	return nil
 }
