@@ -1,15 +1,15 @@
-
-
-package main
+package commands
 
 import (
 	"fmt"
 	"time"
 	"strconv"
 	"strings"
+	fileStorage "github.com/neel004/task-tracker/storage"
+	taskModels "github.com/neel004/task-tracker/models"
 )
-func MoveTo(args ...string) error {
-	items, err := ReadStorage()
+func MoveTo(storage fileStorage.Storage, args ...string) error {
+	items, err := storage.Read()
 	if err != nil {
 		return fmt.Errorf("error encountered while reading storage: %w", err)
 	}
@@ -23,7 +23,7 @@ func MoveTo(args ...string) error {
 	}
 	uint_16_id := uint16(id)
 
-	newState, ok := ParseStatusType(strings.ToLower(args[1]))
+	newState, ok := taskModels.ParseStatusType(strings.ToLower(args[1]))
 	if !ok {
 		return fmt.Errorf("the queried status does not exist.")
 	}
@@ -42,7 +42,7 @@ func MoveTo(args ...string) error {
 		return fmt.Errorf("task with id %d does not exists. please try again.", id)
 	}
 
-	if err = UpdateStorage(items); err != nil{
+	if err = storage.Update(items); err != nil{
 		return fmt.Errorf("error encountered while saving data: %w", err)
 	}
 	return nil

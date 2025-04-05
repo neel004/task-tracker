@@ -1,9 +1,10 @@
-package main
+package commands
 
 import (
 	"fmt"
 	"time"
 	"strings"
+	fileStorage "github.com/neel004/task-tracker/storage"
 )
 
 func wrapText(width int, input string) []string{
@@ -28,8 +29,8 @@ func wrapText(width int, input string) []string{
 	return lines
 }
 
-func List(args ...string) error{
-	items, err := ReadStorage()
+func List(storage fileStorage.Storage, args ...string) error{
+	items, err := storage.Read()
 
 	if err != nil {
 		fmt.Println("error encountered while reading storage: %w", err)

@@ -1,15 +1,16 @@
-package main
+package commands
 
 import (
 	"fmt"
 	"time"
 	"strings"
 	"strconv"
+	fileStorage "github.com/neel004/task-tracker/storage"
 )
 
 
-func Update(args ...string) error{
-	items, err := ReadStorage()
+func Update(storage fileStorage.Storage, args ...string) error{
+	items, err := storage.Read()
 
 	if err != nil {
 		return fmt.Errorf("error encountered while reading storage: %w", err)
@@ -39,7 +40,7 @@ func Update(args ...string) error{
 		return fmt.Errorf("task with id %d does not exists. please try again.", id)
 	}
 
-	if err = UpdateStorage(items); err != nil{
+	if err = storage.Update(items); err != nil{
 		return fmt.Errorf("error encountered while saving data: %w", err)
 	}
 	return nil

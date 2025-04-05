@@ -1,40 +1,27 @@
-package main
+package storage
 
 import (
 	"fmt"
 	"os"
 	"encoding/json"
-	"time"
 )
-
-type TaskStatus int
-
-const (
-	TODO TaskStatus = iota // 0
-	InProgress 
-	Done
-)
-var MapFromString = map[string]TaskStatus{
-	"todo": TODO,
-	"inprogress": InProgress,
-	"done": Done,
-}
-func ParseStatusType(input string) (TaskStatus, bool){
-	taskStatus, ok := MapFromString[input]
-	return taskStatus, ok
-}
-
-
-type TaskItem struct{
-	Id uint16	`json:id`
-	Description string	`json:"description"`
-	Status TaskStatus	`json:"status"`
-	CreatedAt time.Time	`json:"createdAt"`
-	UpdatedAt time.Time	`json:"updatedAt"`
-}
 
 const dataDir string = "data"
 const dataFile string = "data/tasks.json"
+
+
+type FileStorage struct{}
+
+func (fs FileStorage) Read()([]TaskItem, error){
+	return ReadStorage()
+}
+func (fs FileStorage) Update(items []TaskItem) error{
+	return UpdateStorage(items)
+}
+func GetStorage() FileStorage{
+	return FileStorage{}
+}
+
 
 func ensureStorage() error {
 	if _, err := os.Stat(dataDir); os.IsNotExist(err) {
