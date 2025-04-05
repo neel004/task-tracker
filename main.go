@@ -44,7 +44,7 @@ func main() {
 		return
 	}
 	storage := storage.GetStorage()
-	err := val.callback(&storage, inputs[1:]...)
+	err := val.callback(storage, inputs[1:]...)
 	if err != nil {
 		fmt.Println(err.Error())
 	}

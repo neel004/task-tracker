@@ -17,8 +17,8 @@ func (fs *FileStorage) Read() ([]TaskItem, error) {
 func (fs *FileStorage) Update(items []TaskItem) error {
 	return UpdateStorage(items)
 }
-func GetStorage() FileStorage {
-	return FileStorage{}
+func GetStorage() *FileStorage {
+	return &FileStorage{}
 }
 
 func ensureStorage() error {
