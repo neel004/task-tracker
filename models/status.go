@@ -1,18 +1,20 @@
 package models
 
-
 type TaskStatus int
+
 const (
 	TODO TaskStatus = iota // 0
-	InProgress 
+	InProgress
 	Done
 )
+
 var MapFromString = map[string]TaskStatus{
-	"todo": TODO,
+	"todo":       TODO,
 	"inprogress": InProgress,
-	"done": Done,
+	"done":       Done,
 }
-func ParseStatusType(input string) (TaskStatus, bool){
+
+func ParseStatusType(input string) (TaskStatus, bool) {
 	taskStatus, ok := MapFromString[input]
 	return taskStatus, ok
 }
