@@ -12,10 +12,10 @@ const dataFile string = "data/tasks.json"
 
 type FileStorage struct{}
 
-func (fs FileStorage) Read()([]TaskItem, error){
+func (fs *FileStorage) Read()([]TaskItem, error){
 	return ReadStorage()
 }
-func (fs FileStorage) Update(items []TaskItem) error{
+func (fs *FileStorage) Update(items []TaskItem) error{
 	return UpdateStorage(items)
 }
 func GetStorage() FileStorage{
