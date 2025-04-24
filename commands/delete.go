@@ -14,7 +14,7 @@ func Delete(storage fileStorage.Storage, args ...string) error {
 		fmt.Println("error encountered while reading storage: %w", err)
 	}
 	if len(args) < 1 {
-		return fmt.Errorf("id and description needs to be passed for update.")
+		return fmt.Errorf("id needs to be passed for update.")
 	}
 	id, err := strconv.ParseUint(args[0], 10, 16)
 	uint_16_id := uint16(id)
