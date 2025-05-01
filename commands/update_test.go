@@ -1,9 +1,9 @@
 package commands
 
 import (
-	"testing"
-	storage "github.com/neel004/task-tracker/storage"
 	commands "github.com/neel004/task-tracker/commands"
+	storage "github.com/neel004/task-tracker/storage"
+	"testing"
 )
 
 // # mockStorage can be exported to common test_utility.go
@@ -33,14 +33,14 @@ func (m *MockStorage) Update(items []storage.TaskItem) error {
 	return nil
 }
 
-func TestUpdate(t *testing.T){
+func TestUpdate(t *testing.T) {
 	/*
-	# valid update commmand
-	# update with un-proper args
-	# update to valid status
+		# valid update commmand
+		# update with un-proper args
+		# update to valid status
 	*/
 	mockStorage := &MockStorage{
-		ReadFunc : func() ([]storage.TaskItem, error){
+		ReadFunc: func() ([]storage.TaskItem, error) {
 			return []storage.TaskItem{
 				{Id: 1, Description: "SampleMockTask1"},
 			}, nil
@@ -51,7 +51,7 @@ func TestUpdate(t *testing.T){
 	if err != nil {
 		t.Errorf("did not expected error %d", err)
 	}
-	if !mockStorage.UpdateCalled{
+	if !mockStorage.UpdateCalled {
 		t.Error("expected to Update be called.")
 	}
 	// Few other correct test checks...

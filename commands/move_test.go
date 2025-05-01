@@ -1,9 +1,9 @@
 package commands
 
 import (
-	"testing"
-	storage "github.com/neel004/task-tracker/storage"
 	commands "github.com/neel004/task-tracker/commands"
+	storage "github.com/neel004/task-tracker/storage"
+	"testing"
 )
 
 type MockStorage struct {
@@ -31,15 +31,15 @@ func (m *MockStorage) Update(items []storage.TaskItem) error {
 	return nil
 }
 
-func TestMove(t *testing.T){
+func TestMove(t *testing.T) {
 	/*
-	# valid move commmand
-	# move with un-proper args
-	# move to valid status
-	# move to invalid status
+		# valid move commmand
+		# move with un-proper args
+		# move to valid status
+		# move to invalid status
 	*/
 	mockStorage := &MockStorage{
-		ReadFunc : func() ([]storage.TaskItem, error){
+		ReadFunc: func() ([]storage.TaskItem, error) {
 			return []storage.TaskItem{
 				{Id: 1, Description: "SampleMockTask1"},
 			}, nil
@@ -50,7 +50,7 @@ func TestMove(t *testing.T){
 	if err != nil {
 		t.Errorf("did not expected error %d", err)
 	}
-	if !mockStorage.UpdateCalled{
+	if !mockStorage.UpdateCalled {
 		t.Error("expected to Update be called.")
 	}
 	// Few other correct test checks...
