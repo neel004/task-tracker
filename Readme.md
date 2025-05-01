@@ -20,7 +20,7 @@ Here are some constraints to guide the implementation:
 *   Do not use any external libraries or frameworks to build this project.
 *   Ensure to handle errors and edge cases gracefully.
 
-### Example
+### Example Usage
 
 The list of commands and their usage is given below:
 
@@ -32,9 +32,9 @@ The list of commands and their usage is given below:
     ./task-tracker update 1 "Buy groceries and cook dinner"
     ./task-tracker delete 1
     
-    # Marking a task as in progress or done
-    ./task-tracker mark-in-progress 1
-    ./task-tracker mark-done 1
+    # Moving a task to inprogress or done or todo
+    ./task-tracker move 1 inprogress
+    ./task-tracker move 1 done
     
     # Listing all tasks
     ./task-tracker list
@@ -42,5 +42,7 @@ The list of commands and their usage is given below:
     # Listing tasks by status
     ./task-tracker list done
     ./task-tracker list todo
-    ./task-tracker list in-progress
+    ./task-tracker list inprogress
 
+
+#### This project is inspired from https://roadmap.sh/projects/task-tracker with slight modifications on original requirements.
