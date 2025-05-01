@@ -17,10 +17,10 @@ func Delete(storage fileStorage.Storage, args ...string) error {
 		return fmt.Errorf("id needs to be passed for update.")
 	}
 	id, err := strconv.ParseUint(args[0], 10, 16)
-	uint_16_id := uint16(id)
 	if err != nil {
 		return fmt.Errorf("error encountered while converting input to valid type: %w", err)
 	}
+	uint_16_id := uint16(id)
 
 	index := slices.IndexFunc(items, func(item fileStorage.TaskItem) bool {
 		return item.Id == uint_16_id
